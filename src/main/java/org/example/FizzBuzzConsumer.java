@@ -2,6 +2,7 @@ package org.example;
 
 import lombok.extern.slf4j.Slf4j;
 import org.apache.kafka.clients.consumer.*;
+import org.apache.kafka.common.TopicPartition;
 import org.apache.kafka.common.serialization.StringDeserializer;
 
 import java.io.BufferedWriter;
@@ -20,8 +21,13 @@ public class FizzBuzzConsumer {
     public static void main ( String[] args ) {
         try (Consumer<String, String> consumer = new KafkaConsumer<>(configProperties());
              BufferedWriter writer = new BufferedWriter(new FileWriter(OUTPUT_FILE))) {
-            consumer.subscribe(Collections.singletonList(TOPIC_NAME));
-            while ( true ) {
+            TopicPartition topicPartition = new TopicPartition(TOPIC_NAME, 0);
+            consumer.assign(Collections.singletonList(topicPartition));
+            long lastOffset = consumer.endOffsets(Collections.singletonList(topicPartition)).get(topicPartition);
+            System.out.println(lastOffset);
+            long currentOffset = consumer.position(topicPartition);
+            while ( currentOffset < lastOffset ) {
+                currentOffset = consumer.position(topicPartition);
                 ConsumerRecords<String, String> records = consumer.poll(Duration.ofMillis(100));
                 for (ConsumerRecord<String, String> record : records) {
                     String value = record.value();
@@ -49,11 +55,11 @@ public class FizzBuzzConsumer {
 
     public static String fizzBuzz ( int number ) {
         if (number % 3 == 0 && number % 5 == 0) {
-            return "FizzBuzz";
+            return "fizzbuzz";
         } else if (number % 3 == 0) {
-            return "Fizz";
+            return "fizz";
         } else if (number % 5 == 0) {
-            return "Buzz";
+            return "buzz";
         } else {
             return String.valueOf(number);
         }
