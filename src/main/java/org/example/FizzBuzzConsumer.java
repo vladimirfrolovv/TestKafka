@@ -44,7 +44,7 @@ public class FizzBuzzConsumer {
                 }
             }
         } catch (IOException e) {
-           log.info(e.getMessage());
+            log.error(e.getMessage());
         }
     }
 
