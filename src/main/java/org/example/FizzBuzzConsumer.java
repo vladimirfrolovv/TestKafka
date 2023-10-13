@@ -20,12 +20,12 @@ public class FizzBuzzConsumer {
              BufferedWriter writer = new BufferedWriter(new FileWriter(OUTPUT_FILE))) {
             consumer.subscribe(Collections.singletonList(TOPIC_NAME));
             while ( true ) {
-                ConsumerRecords<String, String> records = consumer.poll(Duration.ofSeconds(10));
+                ConsumerRecords<String, String> records = consumer.poll(Duration.ofMillis(100));
                 for (ConsumerRecord<String, String> record : records) {
                     String value = record.value();
                     int number = Integer.parseInt(value);
                     String result = fizzBuzz(number);
-//                    System.out.println(result);
+                    System.out.println(result);
                     writer.write(result);
                     writer.newLine();
                 }
