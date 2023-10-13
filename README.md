@@ -4,13 +4,14 @@
 
 ## Description:
 
-Проект включает в себя Java приложения, для считывания последовательности чисел из Kafka, и применения 
-к ней алгоритма FizzBuzz
+Проект включает в себя Java приложение для считывания последовательности чисел(от 1 до 100000)
+из Kafka и применения к ней алгоритма FizzBuzz.
 
 ## Technologies:
 * [Java 17](https://www.java.com/en/)
-* [Docker](https://www.docker.com/)
 * [Kafka](https://kafka.apache.org/)
+* [Docker](https://www.docker.com/)
+
 
 ## Dependincies:
 * [Java SE Development Kit 17+](https://www.oracle.com/java/technologies/downloads/archive/)

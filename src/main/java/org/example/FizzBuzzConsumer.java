@@ -21,14 +21,19 @@ public class FizzBuzzConsumer {
     public static void main ( String[] args ) {
         try (Consumer<String, String> consumer = new KafkaConsumer<>(configProperties());
              BufferedWriter writer = new BufferedWriter(new FileWriter(OUTPUT_FILE))) {
+
             TopicPartition topicPartition = new TopicPartition(TOPIC_NAME, 0);
+
             consumer.assign(Collections.singletonList(topicPartition));
+
             long lastOffset = consumer.endOffsets(Collections.singletonList(topicPartition)).get(topicPartition);
-            System.out.println(lastOffset);
             long currentOffset = consumer.position(topicPartition);
+
             while ( currentOffset < lastOffset ) {
                 currentOffset = consumer.position(topicPartition);
+
                 ConsumerRecords<String, String> records = consumer.poll(Duration.ofMillis(100));
+
                 for (ConsumerRecord<String, String> record : records) {
                     String value = record.value();
                     int number = Integer.parseInt(value);
@@ -39,7 +44,7 @@ public class FizzBuzzConsumer {
                 }
             }
         } catch (IOException e) {
-            System.out.println(e.getMessage());
+           log.info(e.getMessage());
         }
     }
 
