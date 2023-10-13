@@ -11,6 +11,8 @@ start:
 stop:
 	@docker-compose down
 	docker volume prune -f
+	docker image rm -f wurstmeister/zookeeper
+	docker image rm -f wurstmeister/kafka
 	docker system prune -a
 topic:
 	@docker-compose exec kafka kafka-topics.sh --create --topic $(TOPIC_NAME) --bootstrap-server $(KAFKA_BROKER) --partitions 1 --replication-factor 1

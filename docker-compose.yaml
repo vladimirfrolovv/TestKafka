@@ -21,6 +21,17 @@ services:
       KAFKA_CREATE_TOPICS: "sequence:1:1"
     networks:
       - kafka-net
+#  app:
+#    container_name: app
+#    ports:
+#      - "8081:8081"
+#    build:
+#      dockerfile: Dockerfile
+#    depends_on:
+#      - kafka
+#      - zookeeper
+#    networks:
+#      - kafka-net
 networks:
   kafka-net:
     driver: bridge
