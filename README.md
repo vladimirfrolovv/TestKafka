@@ -8,19 +8,20 @@
 из Kafka и применения к ней алгоритма FizzBuzz.
 
 ## Technologies:
+
 * [Java 17](https://www.java.com/en/)
 * [Kafka](https://kafka.apache.org/)
 * [Docker](https://www.docker.com/)
 
+## Dependencies:
 
-## Dependincies:
 * [Java SE Development Kit 17+](https://www.oracle.com/java/technologies/downloads/archive/)
 * [Docker](https://www.docker.com/)
 * [Make](https://en.wikipedia.org/wiki/Make_(software))
 * [Maven](https://maven.apache.org/)
 
-
 ### Installation
+
 1. Находясь, в корне проекта, введите в терминале
    ```sh
    make (or "make all")
