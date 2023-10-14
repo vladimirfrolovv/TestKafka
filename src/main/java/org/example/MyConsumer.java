@@ -16,6 +16,7 @@ import java.util.*;
 public class MyConsumer {
     private static final String TOPIC_NAME = "sequence";
     private static final String OUTPUT_FILE = "output.txt";
+
     public static void main ( String[] args ) {
 
         try (org.apache.kafka.clients.consumer.Consumer<String, String> consumer = new KafkaConsumer<>

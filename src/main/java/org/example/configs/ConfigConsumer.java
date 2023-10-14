@@ -9,6 +9,7 @@ import java.util.UUID;
 public class ConfigConsumer {
     private static final String AUTO_OFFSET_RESET_CONFIG = "earliest";
     private static final String BOOTSTRAP_SERVERS = "localhost:9093";
+
     public static Properties configProperties ( ) {
         final Properties properties = new Properties();
         properties.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, BOOTSTRAP_SERVERS);
