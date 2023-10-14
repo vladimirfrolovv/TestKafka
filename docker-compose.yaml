@@ -7,6 +7,7 @@ services:
       - "2181:2181"
     networks:
       - kafka-net
+
   kafka:
     image: wurstmeister/kafka
     container_name: kafka

@@ -60,7 +60,7 @@
                     </descriptorRefs>
                     <archive>
                         <manifest>
-                            <mainClass>org.example.FizzBuzzConsumer</mainClass>
+                            <mainClass>org.example.MyConsumer</mainClass>
                         </manifest>
                     </archive>
                 </configuration>
