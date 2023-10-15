@@ -1,4 +1,4 @@
-package org.example.transformData;
+package org.example.transform;
 
 
 public class FizzBuzz {

@@ -4,7 +4,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.apache.kafka.clients.consumer.*;
 import org.apache.kafka.common.TopicPartition;
 import org.example.configs.ConfigConsumer;
-import org.example.transformData.FizzBuzz;
+import org.example.transform.FizzBuzz;
 
 import java.io.BufferedWriter;
 import java.io.FileWriter;
@@ -45,7 +45,7 @@ public class MyConsumer {
                 }
             }
         } catch (IOException e) {
-            log.error(e.getMessage());
+            log.error("Error message", e);
         }
     }
 }
