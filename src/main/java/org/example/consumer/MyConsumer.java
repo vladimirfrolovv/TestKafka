@@ -24,7 +24,7 @@ public class MyConsumer {
     }
 
 
-    public void run () {
+    public void run ( ) {
         try (Consumer<String, String> consumer = new KafkaConsumer<>
                 (ConfigConsumer.configProperties());
              BufferedWriter writer = new BufferedWriter(new FileWriter(OUTPUT_FILE))) {
