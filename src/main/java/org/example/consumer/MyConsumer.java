@@ -4,7 +4,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.apache.kafka.clients.consumer.*;
 import org.apache.kafka.common.TopicPartition;
 import org.example.configs.ConfigConsumer;
-import org.example.transform.FizzBuzz;
 import org.example.transform.Transformation;
 
 import java.io.BufferedWriter;
@@ -17,6 +16,7 @@ import java.util.*;
 public class MyConsumer {
     private static final String TOPIC_NAME = "sequence";
     private static final String OUTPUT_FILE = "output.txt";
+    private static final Duration TIME_OUT = Duration.ofMillis(100);
     private final Transformation transformation;
 
     public MyConsumer ( Transformation transformation ) {
@@ -39,7 +39,7 @@ public class MyConsumer {
             while ( currentOffset < lastOffset ) {
                 currentOffset = consumer.position(topicPartition);
 
-                ConsumerRecords<String, String> records = consumer.poll(Duration.ofMillis(100));
+                ConsumerRecords<String, String> records = consumer.poll(TIME_OUT);
 
                 for (ConsumerRecord<String, String> record : records) {
                     String value = record.value();
@@ -51,7 +51,7 @@ public class MyConsumer {
                 }
             }
         } catch (IOException e) {
-            log.error("Error message", e);
+            log.error("Dont write data", e);
         }
     }
 }
